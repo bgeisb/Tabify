@@ -10,9 +10,20 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
 
-    runs-on: macOS-12 
+  SwiftLint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: GitHub Action for SwiftLint
+      uses: norio-nomura/action-swiftlint@3.2.1
+
+  Build:
+
+    runs-on: macOS-12
 
     steps:
     - uses: actions/checkout@v3
@@ -22,3 +33,6 @@ jobs:
       
     - name: Build  macOS
       run: xcodebuild -scheme Tabify -destination 'generic/platform=macOS'
+
+    - name: Build  mac Catalyst
+      run: xcodebuild -scheme Tabify -destination 'generic/platform=macOS,variant=Mac Catalyst'
