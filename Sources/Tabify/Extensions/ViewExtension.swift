@@ -20,4 +20,8 @@ extension View {
             )
         }
     }
+    
+    public func tabItem<Item: TabifyItem>(for item: Item) -> some View {
+        return self.modifier(ItemViewModifier(item: item))
+    }
 }

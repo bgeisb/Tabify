@@ -9,8 +9,8 @@ public struct Tabify<Item: TabifyItem, Content: View>: View {
     private let content: Content
     private let selectedItem: SelectionManager<Item>
     
-    private var itemStyle: GenericItemStyle
-    private var barStyle: GenericBarStyle
+    var itemStyle: GenericItemStyle
+    var barStyle: GenericBarStyle
     
     public init(
         selectedItem: Binding<Item>,
