@@ -17,9 +17,28 @@
 
 
 <!-- PROJECT HEADER -->
-# Tabify
+![tabify_banner](https://user-images.githubusercontent.com/36701166/211655185-1ac9fd7c-40f7-4cf4-9eba-07933b053b1b.png)
 
-A view that elegantly utilizes interactive user interface elements to dynamically switch between multiple child views.
+
+<!-- TABLE OF CONTENTS -->
+## Table of contents
+
+* [Description](#description)
+* [Requirements](#requirements)
+* [Installation](#installation)
+    * [Swift Package Manager](#swift-package-manager) 
+    * [CocoaPods](#cocoapods)
+* [Usage](#usage)
+    * [1. Create TabifyItems Enum](#1-create-tabifyitems-enum)
+    * [2. Add Tabify View](#2-add-tabify-view)
+* [Contributing](#contributing)
+* [License](#license)
+
+
+<!-- DESCRIPTION -->
+## Description
+`Tabify` is a SwiftUI view that elegantly utilizes interactive user interface elements to dynamically switch between multiple child views.
+It is highly customizable and, due to its similarity to the native `TabView` SwiftUI component, very user-friendly and easy to use.
 
 
 <!-- REQUIREMENTS -->
@@ -31,12 +50,81 @@ A view that elegantly utilizes interactive user interface elements to dynamicall
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- Installation -->
+## Installation
+
+### Swift Package Manager
+
+The preferred way of installing `Tabify` is via the [Swift Package Manager](https://swift.org/package-manager/).
+
+1. In Xcode, open your project and navigate to **File** → **Add Packages**
+2. Paste the repository URL (`https://github.com/bgeisb/Tabify.git`) and click **Next**.
+3. For **Rules**, select **Up to Next Major Version**.
+4. Click **Add Package**.
+
+### CocoaPods
+
+⏳ Coming soon...
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Usage -->
+## Usage
+
+### 1. Create TabifyItems Enum
+
+> Make sure your enum implements the `TabifyItem` protocol.
+
+```swift
+enum TabifyItems: Int, TabifyItem {
+    case home = 0
+    case search
+    case profile
+    
+    var icon: String {
+        switch self {
+            case .home: return "house"
+            case .search: return "magnifyingglass"
+            case .profile: return "person"
+        }
+    }
+    
+    var title: String {
+        switch self {
+            case .home: return "Home"
+            case .search: return "Search"
+            case .profile: return "Profile"
+        }
+    }
+}
+```
+
+### 2. Add Tabify View
+
+```swift
+Tabify(selectedItem: $tabBarSelection) {
+    Text("Home")
+    .tabItem(for: TabifyItems.first)
+
+    Text("Search")
+    .tabItem(for: TabifyItems.second)
+
+    Text("Profile")
+    .tabItem(for: TabifyItems.third)
+}
+/* This following modifiers are optional. You can use them to inject your custom bar and item styling. */
+.barStyle(style: CustomTabifyBarStyle())
+.itemStyle(style: CustomTabifyItemStyle())
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply [open an issue](https://github.com/bgeisb/Tabify/issues/new) with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
